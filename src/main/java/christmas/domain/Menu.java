@@ -36,8 +36,8 @@ public enum Menu {
         throw new IllegalArgumentException("[ERROR] 메뉴판에 없는 메뉴입니다.");
     }
 
-    public MenuType getType() {
-        return this.menuType;
+    public boolean isDrink() {
+        return this.menuType == 음료;
     }
 
     public enum MenuType {
