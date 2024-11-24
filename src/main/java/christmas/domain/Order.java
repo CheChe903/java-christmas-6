@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.domain.Menu.MenuType;
+
 public class Order {
 
     private final Menu menu;
@@ -10,8 +12,8 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public boolean isDrink() {
-        return menu.isDrink();
+    public boolean isEqual(MenuType menuType) {
+        return menu.isEqual(menuType);
     }
 
     public int getQuantity() {
