@@ -14,4 +14,8 @@ public class VisitingDay {
             throw new IllegalArgumentException("[ERROR] 방문 날짜는 1이상, 31이하입니다.");
         }
     }
+
+    public int calculateFee() {
+        return 1000 + (day * 100);
+    }
 }
