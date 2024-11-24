@@ -25,4 +25,16 @@ class VisitingDayTest {
         //then
         assertThat(discountFee).isEqualTo(1500);
     }
+
+    @Test
+    void 입력_날짜가_26이상이면_할인_금액이_0이다() {
+        //given
+        VisitingDay visitingDay = new VisitingDay(26);
+
+        //when
+        int discountFee = visitingDay.calculateFee();
+
+        //then
+        assertThat(discountFee).isEqualTo(0);
+    }
 }

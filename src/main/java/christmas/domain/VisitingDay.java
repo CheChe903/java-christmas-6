@@ -16,6 +16,9 @@ public class VisitingDay {
     }
 
     public int calculateFee() {
+        if (day > 25) {
+            return 0;
+        }
         return 1000 + (day * 100);
     }
 }
