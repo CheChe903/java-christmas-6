@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.domain.Menu.MenuType.디저트;
 import static christmas.domain.Menu.MenuType.메인;
 import static christmas.domain.Menu.MenuType.에피타이저;
 import static christmas.domain.Menu.MenuType.음료;
@@ -14,6 +15,9 @@ public enum Menu {
     바비큐립(메인, 54000),
     해산물파스타(메인, 35000),
     크리스마스파스타(메인, 25000),
+
+    초코케이크(디저트, 15000),
+    아이스크림(디저트, 5000),
 
     제로콜라(음료, 3000),
     레드와인(음료, 60000),

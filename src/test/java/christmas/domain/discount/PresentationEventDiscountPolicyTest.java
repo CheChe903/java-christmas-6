@@ -1,0 +1,21 @@
+package christmas.domain.discount;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+
+class PresentationEventDiscountPolicyTest {
+
+    @Test
+    void 일정금액이_넘어가면_증정품이_증정된다() {
+        //given
+        DiscountPolicy discountPolicy = new PresentationEventDiscountPolicy(130000);
+
+        //when
+        int discountAmount = discountPolicy.calculateDiscountFee();
+
+        //then
+        assertThat(discountAmount).isEqualTo(25000);
+    }
+
+}
