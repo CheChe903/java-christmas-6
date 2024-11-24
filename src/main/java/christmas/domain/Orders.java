@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import christmas.domain.Menu.MenuType;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,12 +36,16 @@ public class Orders {
     }
 
     private void validOnlyDrinks() {
-        Set<MenuType> typeSet = new HashSet<>();
+        int drinkSize = 0;
+        int allSize = 0;
         for (Order order : orders) {
-            if (typeSet.contains(order.getMenu().getType())) {
-                throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다.");
+            if (order.isDrink()) {
+                drinkSize += order.getQuantity();
             }
-            typeSet.add(order.getMenu().getType());
+            allSize += order.getQuantity();
+        }
+        if (drinkSize == allSize) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다.");
         }
     }
 }

@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.domain.Menu.MenuType.음료;
+
 public class Order {
 
     private final Menu menu;
@@ -8,6 +10,10 @@ public class Order {
     public Order(Menu menu, int quantity) {
         this.menu = menu;
         this.quantity = quantity;
+    }
+
+    public boolean isDrink() {
+        return menu.getType().equals(음료);
     }
 
     public int getQuantity() {
