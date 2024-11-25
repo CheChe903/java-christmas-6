@@ -1,5 +1,7 @@
 package christmas.domain.discount;
 
+import static christmas.domain.discount.PrintDiscountPolicyDetail.CHRISTMASDDAY;
+
 import christmas.domain.VisitingDay;
 
 public class ChristmasDdayDiscountPolicy implements DiscountPolicy {
@@ -12,6 +14,20 @@ public class ChristmasDdayDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int calculateDiscountFee() {
-        return visitingDay.calculateFee();
+        if (checkCondition()) {
+            visitingDay.calculateFee();
+        }
+        return 0;
     }
+
+    @Override
+    public PrintDiscountPolicyDetail getPrintDiscountPolicyDetail() {
+        return CHRISTMASDDAY;
+    }
+
+    @Override
+    public boolean checkCondition() {
+        return visitingDay.isChristmas();
+    }
+
 }

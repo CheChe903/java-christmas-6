@@ -1,10 +1,21 @@
 package christmas.domain;
 
+import static java.time.DayOfWeek.FRIDAY;
+import static java.time.DayOfWeek.SATURDAY;
+import static java.time.DayOfWeek.SUNDAY;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 public class VisitingDay {
 
+    private final int year;
+    private final int month;
     private final int day;
 
-    public VisitingDay(int day) {
+    public VisitingDay(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
         this.day = day;
         validCorrectDay();
     }
@@ -15,10 +26,34 @@ public class VisitingDay {
         }
     }
 
+    public LocalDate getLocalDate() {
+        return LocalDate.of(year, month, day);
+    }
+
+    public boolean isSpecialDay() {
+        LocalDate date = getLocalDate();
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return day == 25 || dayOfWeek == SUNDAY;
+    }
+
+    public boolean isWeekend() {
+        LocalDate date = getLocalDate();
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+
+        return dayOfWeek == FRIDAY || dayOfWeek == SATURDAY;
+
+    }
+
+    public boolean isChristmas() {
+        return day == 25;
+    }
+
     public int calculateFee() {
-        if (day > 25) {
-            return 0;
-        }
         return 1000 + (day * 100);
     }
+
+    public int getDay() {
+        return day;
+    }
+
 }

@@ -21,7 +21,7 @@ public enum Menu {
 
     제로콜라(음료, 3000),
     레드와인(음료, 60000),
-    삼페인(음료, 25000);
+    샴페인(음료, 25000);
 
     private final MenuType menuType;
     private final int price;
@@ -42,6 +42,14 @@ public enum Menu {
 
     public boolean isEqual(MenuType menuType) {
         return this.menuType == menuType;
+    }
+
+    public String getName() {
+        return this.toString();
+    }
+
+    public int getPrice() {
+        return this.price;
     }
 
     public enum MenuType {

@@ -52,6 +52,10 @@ public class Orders {
         }
     }
 
+    public void checkDiscount() {
+        
+    }
+
     public int getTypeSize(MenuType menuType) {
         int size = 0;
         for (Order order : orders) {
@@ -60,5 +64,13 @@ public class Orders {
             }
         }
         return size;
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (Order order : orders) {
+            totalPrice += order.getMenuPrice();
+        }
+        return totalPrice;
     }
 }

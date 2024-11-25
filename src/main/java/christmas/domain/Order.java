@@ -23,4 +23,12 @@ public class Order {
     public Menu getMenu() {
         return menu;
     }
+
+    public String getName() {
+        return menu.getName();
+    }
+
+    public int getMenuPrice() {
+        return menu.getPrice() * quantity;
+    }
 }
