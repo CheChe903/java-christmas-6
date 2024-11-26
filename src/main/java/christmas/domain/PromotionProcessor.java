@@ -30,11 +30,19 @@ public class PromotionProcessor {
         if (totalPrice < 10000) {
             return;
         }
+
         discountPolicies = List.of(
                 new ChristmasDdayDiscountPolicy(visitingDay), new WeekendDiscountPolicy(orders, visitingDay),
                 new WeeksDaysDiscountPolicy(orders, visitingDay), new SpecialDiscountPolicy(visitingDay),
-                new PresentationEventDiscountPolicy(샴페인, totalPrice, 1)
+                makePresentation()
         );
+    }
+
+    private PresentationEventDiscountPolicy makePresentation() {
+        if (totalPrice >= 120000) {
+            return new PresentationEventDiscountPolicy(샴페인, totalPrice, 1);
+        }
+        return new PresentationEventDiscountPolicy(없음, totalPrice, 0);
     }
 
     public PresentationEventDiscountPolicy getPresentation() {

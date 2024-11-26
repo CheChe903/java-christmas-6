@@ -10,7 +10,7 @@ class PresentationEventDiscountPolicyTest {
     @Test
     void 일정금액이_넘어가면_증정품이_증정된다() {
         //given
-        DiscountPolicy discountPolicy = new PresentationEventDiscountPolicy(샴페인);
+        DiscountPolicy discountPolicy = new PresentationEventDiscountPolicy(샴페인, 120000, 1);
 
         //when
         int discountAmount = discountPolicy.calculateDiscountFee();

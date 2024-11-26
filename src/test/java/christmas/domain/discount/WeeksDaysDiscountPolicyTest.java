@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Order;
 import christmas.domain.Orders;
+import christmas.domain.VisitingDay;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,8 @@ class WeeksDaysDiscountPolicyTest {
         Order order = new Order(초코케이크, 5);
         Order order1 = new Order(티본스테이크, 5);
         Order order2 = new Order(바비큐립, 5);
-        DiscountPolicy discountPolicy = new WeeksDaysDiscountPolicy(new Orders(List.of(order2, order1, order)));
+        DiscountPolicy discountPolicy = new WeeksDaysDiscountPolicy(new Orders(List.of(order2, order1, order)),
+                new VisitingDay(2023, 12, 20));
 
         //when
         int discountAmount = discountPolicy.calculateDiscountFee();

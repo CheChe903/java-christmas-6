@@ -21,8 +21,8 @@ public class VisitingDay {
     }
 
     private void validCorrectDay() {
-        if (day < 1 || day > 32) {
-            throw new IllegalArgumentException("[ERROR] 방문 날짜는 1이상, 31이하입니다.");
+        if (day < 1 || day > 31) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 

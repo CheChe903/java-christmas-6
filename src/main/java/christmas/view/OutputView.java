@@ -2,7 +2,7 @@ package christmas.view;
 
 import static christmas.domain.Menu.MenuType.없음;
 
-import christmas.Badge;
+import christmas.domain.Badge;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.discount.DiscountPolicy;
@@ -67,7 +67,7 @@ public class OutputView {
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
-        System.out.println("<총 혜택 금액>");
+        System.out.println("<총혜택 금액>");
         System.out.printf("%,d원", totalBenefitAmount);
         System.out.println();
     }
