@@ -44,12 +44,12 @@ public class VisitingDay {
 
     }
 
-    public boolean isChristmas() {
-        return day == 25;
+    public boolean isPreviousChristmas() {
+        return day <= 25;
     }
 
     public int calculateFee() {
-        return 1000 + (day * 100);
+        return 900 + (day * 100);
     }
 
     public int getDay() {
