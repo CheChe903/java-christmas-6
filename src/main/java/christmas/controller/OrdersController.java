@@ -17,28 +17,33 @@ public class OrdersController {
 
     private static final String PATTERN = "^([가-힣]+)-(\\d+)$";
 
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public OrdersController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void start() {
         outputView.printStartingPhrase();
         VisitingDay visitingDay = new VisitingDay(2023, 12, Integer.parseInt(inputView.enterVisitDate()));
 
-        outputView.printBanner(visitingDay.getDay());
-
         String orderInput = inputView.enterOrderMenu();
+
+        outputView.printBanner(visitingDay.getDay());
 
         Pattern pattern = Pattern.compile(PATTERN);
 
-        Matcher matcher = pattern.matcher(orderInput);
+        String[] orderItems = orderInput.split(",");
         List<Order> orders1 = new ArrayList<>();
 
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException("[ERROR] 형식에 맞지 않습니다.");
-        }
-        matcher.reset();
-        while (matcher.find()) {
-            Order order = new Order(Menu.from(matcher.group(0)), Integer.parseInt(matcher.group(1)));
+        for (String item : orderItems) {
+            Matcher matcher = pattern.matcher(item.trim());
+            if (!matcher.matches()) {
+                throw new IllegalArgumentException("[ERROR] 형식에 맞지 않습니다: " + item);
+            }
+            Order order = new Order(Menu.from(matcher.group(1)), Integer.parseInt(matcher.group(2)));
             orders1.add(order);
         }
 
@@ -49,14 +54,18 @@ public class OrdersController {
         outputView.printTotalPrice(orders.getTotalPrice());
 
         PromotionProcessor promotionProcessor = new PromotionProcessor(visitingDay, orders.getTotalPrice(), orders);
+        promotionProcessor.checkPromotion();
+
         outputView.printGiveawayMenu(promotionProcessor.getPresentation().getPresentation(),
                 promotionProcessor.getPresentation().getQuantity());
-        outputView.printBenefitDetails(promotionProcessor.checkPromotion());
+        outputView.printBenefitDetails(promotionProcessor.getDiscountPolicies());
 
         outputView.printTotalBenefitAmount(promotionProcessor.getTotalBenefitAmount());
 
-        outputView.printDepositAmountAfterDiscount(orders.getTotalPrice() - promotionProcessor.getTotalBenefitAmount());
+        outputView.printDepositAmountAfterDiscount(
+                orders.getTotalPrice() - promotionProcessor.getTotalBenefitAmountExcludingGiftEvent());
 
         outputView.printBadge(Badge.from(promotionProcessor.getTotalBenefitAmount()));
     }
+
 }
