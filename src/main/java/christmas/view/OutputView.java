@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.domain.Menu.MenuType.없음;
+
 import christmas.Badge;
 import christmas.domain.Menu;
 import christmas.domain.Order;
@@ -19,13 +21,13 @@ public class OutputView {
     }
 
     public void printOrderDetails(List<Order> orders) {
+        System.out.println();
         System.out.println("<주문 메뉴>");
         StringBuilder sb = new StringBuilder();
         for (Order order : orders) {
             sb.append(order.getName()).append(" ").append(order.getQuantity()).append("개").append("\n");
         }
         System.out.println(sb);
-        System.out.println();
     }
 
     public void printTotalPrice(int totalPrice) {
@@ -36,6 +38,12 @@ public class OutputView {
 
     public void printGiveawayMenu(Menu menu, int quantity) {
         System.out.println("<증정 메뉴>");
+        if (menu.isEqual(없음)) {
+            System.out.printf("%s", menu.getName());
+            System.out.println();
+            return;
+        }
+
         System.out.printf("%s %d개", menu.getName(), quantity);
         System.out.println();
     }
@@ -60,18 +68,18 @@ public class OutputView {
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
         System.out.println("<총 혜택 금액>");
-        System.out.println(totalBenefitAmount);
+        System.out.printf("%,d원", totalBenefitAmount);
         System.out.println();
     }
 
     public void printDepositAmountAfterDiscount(int amount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(amount);
+        System.out.printf("%,d원", amount);
         System.out.println();
     }
 
     public void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(badge);
+        System.out.println(badge.name());
     }
 }
