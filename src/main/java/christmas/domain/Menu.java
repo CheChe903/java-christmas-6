@@ -7,6 +7,8 @@ import static christmas.domain.Menu.MenuType.음료;
 
 public enum Menu {
 
+    없음(MenuType.없음, 0),
+
     양송이수프(에피타이저, 6000),
     타파스(에피타이저, 5500),
     시저샐러드(에피타이저, 8000),
@@ -56,7 +58,8 @@ public enum Menu {
         에피타이저,
         메인,
         디저트,
-        음료;
+        음료,
+        없음;
 
     }
 }
