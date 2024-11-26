@@ -15,7 +15,7 @@ public class ChristmasDdayDiscountPolicy implements DiscountPolicy {
     @Override
     public int calculateDiscountFee() {
         if (checkCondition()) {
-            visitingDay.calculateFee();
+            return visitingDay.calculateFee();
         }
         return 0;
     }
@@ -27,7 +27,7 @@ public class ChristmasDdayDiscountPolicy implements DiscountPolicy {
 
     @Override
     public boolean checkCondition() {
-        return visitingDay.isChristmas();
+        return visitingDay.isPreviousChristmas();
     }
 
 }
